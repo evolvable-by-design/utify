@@ -1,0 +1,12 @@
+.section {
+  color: #fff;
+  background-position: 50% 50% !important;
+  background-size: cover !important;
+  width: 100%;
+  background: url(./preloginhome.jpg);
+  position: fixed;
+}
+
+.section-fullscreen {
+  min-height: 100vh;
+}
