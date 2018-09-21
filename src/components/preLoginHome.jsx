@@ -54,25 +54,29 @@ const styles = theme => ({
 
 const PreLoginHome = props => {
   const { classes } = props;
+
+  const handleLogIn = () => {
+    // push can be replaced with "replace" if you dont want the user to click back button and go back to the pre-login page
+    props.history.push("/signin");
+  };
+
   return (
     <React.Fragment>
       <div className="section section-fullscreen">
         <Grid
           container
           xs={12}
-          container
           direction="row"
           alignItems="center"
           justify="center"
         >
           <img src={logo} className={classes.logoPosition} />
-          <logo className={classes.logo}> UTIFY </logo>
-          <cr className={classes.cr}> &copy; </cr>
+          <div className={classes.logo}> UTIFY </div>
+          <div className={classes.cr}> &copy; </div>
         </Grid>
         <Grid
           container
           xs={12}
-          container
           direction="row"
           justify="center"
           alignItems="center"
@@ -82,7 +86,6 @@ const PreLoginHome = props => {
         <Grid
           container
           xs={12}
-          container
           direction="row"
           justify="center"
           alignItems="center"
@@ -92,12 +95,13 @@ const PreLoginHome = props => {
         <Grid
           container
           xs={12}
-          container
           direction="row"
           justify="center"
           alignItems="center"
         >
-          <StyledButton className={classes.logInBtn}> LOG IN </StyledButton>
+          <StyledButton onClick={handleLogIn} className={classes.logInBtn}>
+            LOG IN
+          </StyledButton>
         </Grid>
       </div>
     </React.Fragment>
