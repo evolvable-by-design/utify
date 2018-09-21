@@ -66,12 +66,19 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     backgroundColor: "#FF8E53",
     color: "white"
+  },
+  palette: {
+    primary: "#00897b",
+    secondary: "#00897b"
   }
 });
 
 // const { classes } = props;
 
 class SignIn extends Component {
+  handleSignIn = () => {
+    this.props.history.replace("/members");
+  };
   state = {};
   render() {
     const { classes } = this.props;
@@ -123,8 +130,9 @@ class SignIn extends Component {
                 type="submit"
                 fullWidth
                 variant="raised"
-                color="red"
+                color="primary"
                 className={classes.submit}
+                onClick={this.handleSignIn}
               >
                 Sign in
               </Button>
