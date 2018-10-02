@@ -12,6 +12,7 @@
 module.exports = {
   search: function(req, res) {
     console.log(req.body);
+    res.send("hello");
     // youtube.search.list({
     //     part: "id,snippet",
     //     q: req.body.keyword
