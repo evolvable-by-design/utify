@@ -5,11 +5,14 @@ import API from "../utils/API";
 class MemberPage extends Component {
   state = {
     searchKeyword: "",
-    user: ""
+    user: "",
+    userid: ""
   };
   componentDidMount() {
     const user = localStorage.getItem("user");
+    const userid = localStorage.getItem("userid");
     this.setState({ user });
+    this.setState({ userid });
   }
 
   searchField = React.createRef();
@@ -19,7 +22,8 @@ class MemberPage extends Component {
 
     console.log(`the search key word is ${this.state.searchKeyword}`);
     API.passKeyword({
-      keyword: this.state.searchKeyword
+      keyword: this.state.searchKeyword,
+      userid: this.state.userid
     });
   };
 
@@ -44,7 +48,6 @@ class MemberPage extends Component {
               label="Search YouTube Tracks"
               style={{ margin: 6 }}
               placeholder="Sart Typing"
-              fullWidth
               margin="normal"
               variant="filled"
               InputLabelProps={{
