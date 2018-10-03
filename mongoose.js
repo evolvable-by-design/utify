@@ -4,29 +4,16 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 module.exports = function() {
-  var db = mongoose.connect("mongodb://localhost:27017/utify");
-
   var UserSchema = new Schema({
+    fullName: {
+      type: String
+    },
     email: {
       type: String,
       required: true,
       trim: true,
       unique: true,
       match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    },
-    facebookProvider: {
-      type: {
-        id: String,
-        token: String
-      },
-      select: false
-    },
-    twitterProvider: {
-      type: {
-        id: String,
-        token: String
-      },
-      select: false
     },
     googleProvider: {
       type: {
@@ -37,7 +24,7 @@ module.exports = function() {
     }
   });
 
-  UserSchema.set("toJSON", { getters: true, virtuals: true });
+  // UserSchema.set("toJSON", { getters: true, virtuals: true });
 
   UserSchema.statics.upsertGoogleUser = function(
     accessToken,
@@ -45,6 +32,7 @@ module.exports = function() {
     profile,
     cb
   ) {
+    console.log(profile);
     var that = this;
     return this.findOne(
       {
@@ -76,6 +64,4 @@ module.exports = function() {
   };
 
   mongoose.model("User", UserSchema);
-
-  return db;
 };

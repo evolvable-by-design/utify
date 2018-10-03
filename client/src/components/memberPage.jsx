@@ -4,8 +4,14 @@ import API from "../utils/API";
 
 class MemberPage extends Component {
   state = {
-    searchKeyword: ""
+    searchKeyword: "",
+    user: ""
   };
+  componentDidMount() {
+    const user = localStorage.getItem("user");
+    this.setState({ user });
+  }
+
   searchField = React.createRef();
 
   handleSubmit = e => {
@@ -26,24 +32,27 @@ class MemberPage extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <TextField
-            ref={this.searchField}
-            autoFocus
-            value={this.state.searchKeyword}
-            onChange={this.handleChange}
-            id="filled-full-width"
-            label="Search YouTube Tracks"
-            style={{ margin: 6 }}
-            placeholder="Sart Typing"
-            fullWidth
-            margin="normal"
-            variant="filled"
-            InputLabelProps={{
-              shrink: true
-            }}
-          />
-        </form>
+        <div>Hello {this.state.user}</div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <TextField
+              ref={this.searchField}
+              autoFocus
+              value={this.state.searchKeyword}
+              onChange={this.handleChange}
+              id="filled-full-width"
+              label="Search YouTube Tracks"
+              style={{ margin: 6 }}
+              placeholder="Sart Typing"
+              fullWidth
+              margin="normal"
+              variant="filled"
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
+          </form>
+        </div>
       </div>
     );
   }

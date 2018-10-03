@@ -1,12 +1,18 @@
 const express = require("express");
 const path = require("path");
+const mongoose = require("mongoose");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
 const bodyParser = require("body-parser");
 var cors = require("cors");
 const routes = require("./routes");
+const searchRoutes = require("./routes/api-routes");
+const config = require("./config");
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 var corsOption = {
   origin: true,
@@ -20,6 +26,17 @@ app.use(cors(corsOption));
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");
+
+app.use(
+  cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [config.session.cookieKey]
+  })
+);
+
+//inititialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Define middleware here
 app.use(logger("dev"));
@@ -35,9 +52,12 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 app.use("/api/v1/", routes);
+app.use("/api", searchRoutes);
 
-const PORT = process.env.PORT || 3001;
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/utify");
 
+// Start the API server
 app.listen(PORT, () => {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
+  console.log(`🌎 ==> Server now on port ${PORT} !`);
 });

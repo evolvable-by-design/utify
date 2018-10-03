@@ -9,6 +9,16 @@ var GoogleTokenStrategy = require("passport-google-token").Strategy;
 var config = require("./config");
 
 module.exports = function() {
+  passport.serializeUser((user, done) => {
+    done(err, user.id);
+  });
+
+  passport.deserializeUser((id, done) => {
+    User.findById(id).then(user => {
+      done(err, user);
+    });
+  });
+
   passport.use(
     new GoogleTokenStrategy(
       {

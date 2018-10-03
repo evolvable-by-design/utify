@@ -4,12 +4,16 @@ var { generateToken, sendToken } = require("../utils/token.utils");
 var passport = require("passport");
 var config = require("../config");
 var request = require("request");
+
 require("../passport")();
 
 // API Routes
 
 router.route("/auth/google").post(
-  passport.authenticate("google-token", { session: false }),
+  passport.authenticate("google-token", {
+    session: false,
+    scope: ["profile", "https://www.googleapis.com/auth/youtube"]
+  }),
   function(req, res, next) {
     if (!req.user) {
       return res.send(401, "User Not Authenticated");

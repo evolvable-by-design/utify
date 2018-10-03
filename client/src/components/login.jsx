@@ -71,8 +71,19 @@ const styles = theme => ({
 class login extends Component {
   state = { isAuthenticated: false, user: null, token: "" };
 
+  componentDidMount() {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const isAuthenticated = true;
+      this.setState({ isAuthenticated });
+      this.setState({ user });
+    }
+  }
+
   logout = () => {
     this.setState({ isAuthenticated: false, token: "", user: null });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   googleResponse = response => {
@@ -85,14 +96,16 @@ class login extends Component {
       method: "POST",
       body: tokenBlob,
       mode: "cors",
-      cache: "default",
-      scope: ["profile", "https://www.googleapis.com/auth/youtube"]
+      cache: "default"
     };
     fetch("http://localhost:3001/api/v1/auth/google", options).then(r => {
       const token = r.headers.get("x-auth-token");
       r.json().then(user => {
         if (token) {
           this.setState({ isAuthenticated: true, user, token });
+          localStorage.setItem("token", this.state.token);
+          localStorage.setItem("user", this.state.user.fullName);
+          this.props.history.replace("/members");
         }
       });
     });
@@ -106,6 +119,7 @@ class login extends Component {
     let content = !!this.state.isAuthenticated ? (
       <div>
         <p>Authenticated</p>
+        <div>{this.state.user.fullName}</div>
         <div>{this.state.user.email}</div>
         <div>
           <button onClick={this.logout} className="button">
@@ -120,6 +134,7 @@ class login extends Component {
           buttonText="Google"
           onSuccess={this.googleResponse}
           onFailure={this.googleResponse}
+          cursor="pointer"
         />
       </div>
     );
@@ -154,6 +169,7 @@ class login extends Component {
           justify="center"
         >
           <div className="App">{content}</div>
+          {console.log(this.state.user)}
         </Grid>
         <CssBaseline />
       </div>
