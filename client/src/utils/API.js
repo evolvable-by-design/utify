@@ -5,7 +5,4 @@ export default {
   passKeyword: function(searchKeyword, userid) {
     return axios.post("/api/search", searchKeyword, userid);
   }
-  // googleAuth: function() {
-  //   return axios.get("/auth/google");
-  // }
 };

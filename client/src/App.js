@@ -6,6 +6,7 @@ import PreLoginHome from "./components/preLoginHome";
 import CardMedia from "@material-ui/core/CardMedia";
 import MemberPage from "./components/memberPage";
 import Google from "./components/auth/google";
+import topNav from "./components/common/topNav";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <Switch>
             <Route path="/members" component={MemberPage} />
             <Route path="/auth/login" component={login} />
+            <Route path="/navtest" component={topNav} />
             {/* <Route path="/auth/google/redirect" component={Google} /> */}
             <Route exact path="/" component={PreLoginHome} />
           </Switch>
