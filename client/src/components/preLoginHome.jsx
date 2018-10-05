@@ -57,7 +57,7 @@ const PreLoginHome = props => {
 
   const handleLogIn = () => {
     // push can be replaced with "replace" if you dont want the user to click back button and go back to the pre-login page
-    props.history.push("/signin");
+    props.history.push("/auth/login");
   };
 
   return (

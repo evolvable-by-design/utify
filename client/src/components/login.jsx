@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import logo from "./loginLogo.png";
+import { GoogleLogin } from "react-google-login";
+import config from "./config.json";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import FormControl from "@material-ui/core/FormControl";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import LockIcon from "@material-ui/icons/LockOutlined";
-import Paper from "@material-ui/core/Paper";
 
 const styles = theme => ({
   logoPosition: {
@@ -75,13 +68,78 @@ const styles = theme => ({
 
 // const { classes } = props;
 
-class SignIn extends Component {
-  handleSignIn = () => {
-    this.props.history.replace("/members");
+class login extends Component {
+  state = { isAuthenticated: false, user: null, token: "" };
+
+  componentDidMount() {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const isAuthenticated = true;
+      this.setState({ isAuthenticated });
+      this.setState({ user });
+    }
+  }
+
+  logout = () => {
+    this.setState({ isAuthenticated: false, token: "", user: null });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
-  state = {};
+
+  googleResponse = response => {
+    console.log(response);
+    const tokenBlob = new Blob(
+      [JSON.stringify({ access_token: response.accessToken }, null, 2)],
+      { type: "application/json" }
+    );
+    const options = {
+      method: "POST",
+      body: tokenBlob,
+      mode: "cors",
+      cache: "default"
+    };
+    fetch("http://localhost:3001/api/v1/auth/google", options).then(r => {
+      const token = r.headers.get("x-auth-token");
+      r.json().then(user => {
+        if (token) {
+          this.setState({ isAuthenticated: true, user, token });
+          localStorage.setItem("token", this.state.token);
+          localStorage.setItem("user", this.state.user.fullName);
+          localStorage.setItem("userid", this.state.user._id);
+          this.props.history.replace("/members");
+        }
+      });
+    });
+  };
+  onFailure = error => {
+    alert(error);
+  };
+
   render() {
     const { classes } = this.props;
+    let content = !!this.state.isAuthenticated ? (
+      <div>
+        <p>Authenticated</p>
+        <div>{this.state.user.fullName}</div>
+        <div>{this.state.user.email}</div>
+        <div>
+          <button onClick={this.logout} className="button">
+            Log out
+          </button>
+        </div>
+      </div>
+    ) : (
+      <div>
+        <GoogleLogin
+          clientId={config.GOOGLE_CLIENT_ID}
+          buttonText="Google"
+          onSuccess={this.googleResponse}
+          onFailure={this.googleResponse}
+          cursor="pointer"
+        />
+      </div>
+    );
+
     return (
       <div>
         <Grid
@@ -104,44 +162,20 @@ class SignIn extends Component {
         >
           <hr className={classes.line} />
         </Grid>
-
+        <Grid
+          container
+          xs={12}
+          direction="row"
+          alignItems="center"
+          justify="center"
+        >
+          <div className="App">{content}</div>
+          {console.log(this.state.user)}
+        </Grid>
         <CssBaseline />
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockIcon />
-            </Avatar>
-            <Typography variant="headline">Sign in</Typography>
-            <form className={classes.form}>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="email">Email Address</InputLabel>
-                <Input id="email" name="email" autoComplete="email" autoFocus />
-              </FormControl>
-              <FormControl margin="normal" required fullWidth>
-                <InputLabel htmlFor="password">Password</InputLabel>
-                <Input
-                  name="password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-              </FormControl>
-              <Button
-                type="submit"
-                fullWidth
-                variant="raised"
-                color="primary"
-                className={classes.submit}
-                onClick={this.handleSignIn}
-              >
-                Sign in
-              </Button>
-            </form>
-          </Paper>
-        </main>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(SignIn);
+export default withStyles(styles)(login);
