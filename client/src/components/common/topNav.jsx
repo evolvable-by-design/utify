@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -18,6 +23,8 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import TextField from "@material-ui/core/TextField";
+import green from "@material-ui/core/colors/green";
+import teal from "@material-ui/core/colors/teal";
 
 import API from "../../utils/API";
 import YouTubeVideo from "./videoResult";
@@ -89,6 +96,26 @@ const styles = theme => ({
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
+  },
+  palette: {
+    primary: green,
+    secondary: teal
+  },
+  videoGridStyle: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+    backgroundColor: theme.palette.background.paper
+  },
+  gridList: {
+    flexWrap: "nowrap",
+    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+    transform: "translateZ(0)"
+  },
+  titleBar: {
+    background:
+      "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
   }
 });
 
@@ -303,17 +330,23 @@ class PrimarySearchAppBar extends Component {
         {/* {this.state.searchResults.map(searchResult => (
           <li key={searchResult.id.videoId}>{searchResult.snippet.title}</li>
         ))} */}
-        <Grid container spacing={8}>
-          {/* <YouTubeVideo videoId="MVBj471BXmM" /> */}
-          {this.state.searchResults.map(searchResult => (
-            <Grid item xs={3}>
-              <YouTubeVideo
-                key={searchResult.id.videoId}
-                videoId={searchResult.id.videoId}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        <div className={classes.videoGridStyle}>
+          <GridList
+            className={classes.gridList}
+            cols={5}
+            spacing={4}
+            cellHeight={"auto"}
+          >
+            {this.state.searchResults.map(searchResult => (
+              <GridListTile key={searchResult.id.videoId}>
+                <YouTubeVideo videoId={searchResult.id.videoId} />
+                <IconButton aria-label="Delete" className={classes.button}>
+                  <FavoriteIcon fontSize="small" />
+                </IconButton>
+              </GridListTile>
+            ))}
+          </GridList>
+        </div>
       </div>
     );
   }
