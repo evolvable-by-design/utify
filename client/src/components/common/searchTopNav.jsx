@@ -334,7 +334,7 @@ class SearchTopNav extends Component {
         {renderMenu}
         {renderMobileMenu}
 
-        <div>Your search results here below</div>
+        {/* <div>Your search results here below</div> */}
         {/* {this.state.searchResults.map(searchResult => (
           <li key={searchResult.id.videoId}>{searchResult.snippet.title}</li>
         ))} */}
