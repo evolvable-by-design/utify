@@ -9,7 +9,7 @@ module.exports = {
     let keyword = req.body.keyword;
     let userid = req.body.userid;
     console.log("this is search keyword " + keyword + "from userid " + userid);
-    res.send("hello");
+    // res.send("hello");
 
     User.findOne({ _id: userid })
       .select("+googleProvider")
@@ -32,13 +32,15 @@ module.exports = {
             auth: oauth2Client
           })
           .search.list({
-            part: "id,snippet",
-            q: keyword
+            maxResults: "25",
+            part: "snippet",
+            q: keyword,
+            type: "video"
           })
           .then(data => {
-            //   res.send("you tube data received");
-            console.log("here itis" + data.data.items[1].snippet.title);
-            // res.json(data.data);
+            // res.send("you tube data received");
+            console.log("here itis" + data.data);
+            res.json(data.data);
           });
       });
   }
