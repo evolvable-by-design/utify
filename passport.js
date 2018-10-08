@@ -6,6 +6,7 @@ var passport = require("passport");
 var User = require("mongoose").model("User");
 
 var GoogleTokenStrategy = require("passport-google-token").Strategy;
+// var GoogleTokenStrategy = require("passport-google-oauth20");
 var config = require("./config");
 
 module.exports = function() {

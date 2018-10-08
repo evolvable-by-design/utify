@@ -15,10 +15,17 @@ var UserSchema = new Schema({
     unique: true,
     match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   },
+  picture: {
+    type: String
+  },
+  gender: {
+    type: String
+  },
   googleProvider: {
     type: {
       id: String,
-      token: String
+      token: String,
+      refreshToken: String
     },
     select: false
   }
@@ -44,9 +51,12 @@ UserSchema.statics.upsertGoogleUser = function(
         var newUser = new that({
           fullName: profile.displayName,
           email: profile.emails[0].value,
+          picture: profile._json.picture,
+          gender: profile._json.gender,
           googleProvider: {
             id: profile.id,
-            token: accessToken
+            token: accessToken,
+            refreshToken: refreshToken
           }
         });
 
