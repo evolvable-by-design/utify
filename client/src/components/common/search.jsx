@@ -16,6 +16,10 @@ import PlayArrow from "@material-ui/icons/PlayArrow";
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
+
 const styles = theme => ({
   gridRoot: {
     display: "flex",
@@ -30,6 +34,9 @@ const styles = theme => ({
   },
   icon: {
     color: "rgba(255, 255, 255, 0.54)"
+  },
+  close: {
+    padding: theme.spacing.unit / 2
   }
 });
 
@@ -38,7 +45,23 @@ class Search extends Component {
     searchKeyword: this.props.location.state.referrer.searchKeyword,
     redirect: false,
     userid: localStorage.getItem("userid"),
-    searchResults: []
+    searchResults: [],
+    open: false
+  };
+
+  handleClick = videoRecord => {
+    this.setState({ open: true });
+    console.log(
+      "VideoId clicked by user " + this.state.userid + " is: " + videoRecord
+    );
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    this.setState({ open: false });
   };
 
   componentDidMount() {
@@ -89,7 +112,10 @@ class Search extends Component {
                     title={searchResult.snippet.title}
                     actionIcon={
                       <Tooltip title="Add to Watch List" placement="top-start">
-                        <IconButton className={classes.icon}>
+                        <IconButton
+                          className={classes.icon}
+                          onClick={() => this.handleClick(searchResult)}
+                        >
                           <PlaylistAdd />
                         </IconButton>
                       </Tooltip>
@@ -98,6 +124,38 @@ class Search extends Component {
                 </GridListTile>
               ))}
             </GridList>
+            <Snackbar
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center"
+              }}
+              open={this.state.open}
+              autoHideDuration={3000}
+              onClose={this.handleClose}
+              ContentProps={{
+                "aria-describedby": "message-id"
+              }}
+              message={<span id="message-id">Added to Watchlist</span>}
+              action={[
+                <Button
+                  key="undo"
+                  color="secondary"
+                  size="small"
+                  onClick={this.handleClose}
+                >
+                  UNDO
+                </Button>,
+                <IconButton
+                  key="close"
+                  aria-label="Close"
+                  color="inherit"
+                  className={classes.close}
+                  onClick={this.handleClose}
+                >
+                  <CloseIcon />
+                </IconButton>
+              ]}
+            />
           </div>
         </Grid>
         {/* Ternary goes here */}
