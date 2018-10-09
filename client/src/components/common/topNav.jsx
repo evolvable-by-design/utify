@@ -312,7 +312,7 @@ class PrimarySearchAppBar extends Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
+              {/* <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
                   badgeContent={4}
@@ -320,8 +320,8 @@ class PrimarySearchAppBar extends Component {
                 >
                   <MailIcon />
                 </Badge>
-              </IconButton>
-              <IconButton color="inherit">
+              </IconButton> */}
+              {/* <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
                   badgeContent={17}
@@ -329,7 +329,7 @@ class PrimarySearchAppBar extends Component {
                 >
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton
                 aria-owns={isMenuOpen ? "material-appbar" : null}
                 aria-haspopup="true"
@@ -353,7 +353,7 @@ class PrimarySearchAppBar extends Component {
         {renderMenu}
         {renderMobileMenu}
 
-        <div>Your search results here below</div>
+        {/* <div>Your search results here below</div> */}
         {/* {this.state.searchResults.map(searchResult => (
           <li key={searchResult.id.videoId}>{searchResult.snippet.title}</li>
         ))} */}
