@@ -17,10 +17,13 @@ router.route("/documentation").get(withAuth((req, res) => {
   res.status(200).json(userAdaptedDocumentation)
 }))
 
+const libraryController = require("../controllers/libraryController");
 //matches with "/api/search"
 
 router.route("/search").post(searchController.search);
 
 router.route("/profile").post(profileController.profile);
+
+router.route("/library").post(libraryController.saveToLibrary);
 
 module.exports = router;

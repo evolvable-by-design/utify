@@ -28,7 +28,7 @@ const styles = theme => ({
     backgroundColor: theme.palette.background.paper
   },
   gridList: {
-    width: "60%",
+    width: "55%",
     height: "auto"
   },
   icon: {
@@ -53,6 +53,21 @@ class Search extends Component {
     console.log(
       "VideoId clicked by user " + this.state.userid + " is: " + videoRecord
     );
+
+    API.passUserIdVideo({
+      videoRecord: videoRecord,
+      userid: this.state.userid
+    })
+      .then(res => {
+        console.log(res.data);
+        //   let searchResults = res.data.items;
+
+        //   this.setState({ searchResults });
+        //   console.log(this.state.searchResults);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   handleClose = (event, reason) => {
