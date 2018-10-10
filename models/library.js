@@ -1,5 +1,3 @@
-"use strict";
-
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
@@ -8,17 +6,20 @@ var LibrarySchema = new Schema({
   userid: {
     type: String
   },
-  vedioId: {
+  videoId: {
     type: String
   },
   thumbnailUrl: {
     type: String
+  },
+  channelTitle: {
+    type: String
+  },
+  title: {
+    type: String
   }
 });
 
-LibrarySchema.set("toJSON", { getters: true, virtuals: true });
+const LibraryItem = mongoose.model("LibraryItem", LibrarySchema);
 
-const Library = mongoose.model("Library", LibrarySchema);
-// return User;
-module.exports = Library;
-// };
+module.exports = LibraryItem;
