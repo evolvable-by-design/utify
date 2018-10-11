@@ -310,6 +310,14 @@ class PrimarySearchAppBar extends Component {
                 />
               </form>
             </div>
+            {/* <Typography
+              className={classes.title}
+              variant="title"
+              color="inherit"
+              noWrap
+            >
+              {this.state.user}
+            </Typography> */}
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               {/* <IconButton color="inherit">
@@ -348,6 +356,14 @@ class PrimarySearchAppBar extends Component {
                 <MoreIcon />
               </IconButton>
             </div>
+            <Typography
+              className={classes.title}
+              variant="subheading"
+              color="inherit"
+              noWrap
+            >
+              {this.state.user}
+            </Typography>
           </Toolbar>
         </AppBar>
         {renderMenu}
