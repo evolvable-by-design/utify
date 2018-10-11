@@ -5,6 +5,7 @@ import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import API from "../utils/API";
 import PrimarySearchAppBar from "./common/topNav";
+import LibraryResults from "./common/libraryResults";
 
 class MemberPage extends React.Component {
   state = {};
@@ -13,6 +14,7 @@ class MemberPage extends React.Component {
     return (
       <Grid container direction="row" alignItems="center" justify="center">
         <PrimarySearchAppBar />
+        <LibraryResults />
       </Grid>
     );
   }

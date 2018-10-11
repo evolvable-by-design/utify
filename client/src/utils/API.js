@@ -25,4 +25,8 @@ export default class API {
     return axios.post("/api/library", userid);
   }
 
+  static passUserIdVideoLibraryResults(userid) {
+    return axios.post("/api/libraryResults", userid);
+  }
+
 }
