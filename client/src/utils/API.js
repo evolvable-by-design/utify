@@ -8,5 +8,12 @@ export default {
 
   passUserId: function(userid) {
     return axios.post("/api/profile", userid);
+  },
+
+  passUserIdVideo: function(userid) {
+    return axios.post("/api/library", userid);
+  },
+  passUserIdVideoLibraryResults: function(userid) {
+    return axios.post("/api/libraryResults", userid);
   }
 };
