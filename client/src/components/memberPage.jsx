@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import API from "../utils/API";
 import PrimarySearchAppBar from "./common/topNav";
 import LibraryResults from "./common/libraryResults";
+import Carousal from "./common/carousal";
 
 class MemberPage extends React.Component {
   state = {};
@@ -14,6 +15,7 @@ class MemberPage extends React.Component {
     return (
       <Grid container direction="row" alignItems="center" justify="center">
         <PrimarySearchAppBar />
+        <Carousal />
         <LibraryResults />
       </Grid>
     );

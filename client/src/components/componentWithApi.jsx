@@ -3,7 +3,7 @@ import Pivo from "@evolvable-by-design/pivo";
 import API from "../utils/API";
 import config from "./config";
 
-const withApi = (Component) => ({ props }) => {
+const withApi = (Component) => (props) => {
   const [pivo, setPivo] = useState()
 
   useEffect(() => {

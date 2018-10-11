@@ -31,6 +31,8 @@ import { browserHistory, withRouter } from "react-router-dom";
 import ImageAvatars from "./avatar";
 import API from "../../utils/API";
 import YouTubeVideo from "./videoResult";
+import withApi from "../componentWithApi";
+import { Vocabulary } from '../../vocabulary';
 
 const styles = theme => ({
   root: {
@@ -145,13 +147,13 @@ class SearchTopNav extends Component {
   searchField = React.createRef();
 
   loadSearchResults = () => {
-    API.passKeyword({
-      keyword: this.state.searchKeyword,
-      userid: this.state.userid
+    this.props.api.passKeyword({
+      [Vocabulary.keyword]: this.state.searchKeyword
     })
-      .then(res => {
-        console.log(res);
-        let searchResults = res.data.items;
+      .then(response => response.rawData)
+      .then(data => {
+        console.log(data);
+        let searchResults = data.items;
         // console.log(searchResults);
         this.setState({ searchResults });
         console.log(this.state.searchResults);
@@ -380,4 +382,4 @@ SearchTopNav.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SearchTopNav);
+export default withApi(withStyles(styles)(SearchTopNav));

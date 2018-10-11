@@ -70,6 +70,7 @@ class LibraryResults extends Component {
   render() {
     console.log(this.state.libraryResults);
     const { classes } = this.props;
+    const urlPrefix = "https://www.youtube.com/watch?v="
     return (
       <React.Fragment>
         <Grid container direction="row" alignItems="center" justify="center">
@@ -82,10 +83,12 @@ class LibraryResults extends Component {
               </GridListTile>
               {this.state.libraryResults.map(libraryResult => (
                 <GridListTile key={libraryResult.videoId}>
+                <a target="_blank" href= {urlPrefix + libraryResult.videoId}>
                   <img
                     src={libraryResult.thumbnailUrl}
                     alt={libraryResult.channelTitle}
                   />
+                  </a>
                   <GridListTileBar title={libraryResult.title} />
                 </GridListTile>
               ))}

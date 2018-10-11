@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PrimarySearchAppBar from "./topNav";
 import Grid from "@material-ui/core/Grid";
 import API from "../../utils/API";
+import withApi from "../componentWithApi";
+import { Vocabulary } from '../../vocabulary';
 import SearchTopNav from "./searchTopNav";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -84,13 +86,13 @@ class Search extends Component {
   }
 
   loadSearchResults = () => {
-    API.passKeyword({
-      keyword: this.state.searchKeyword,
-      userid: this.state.userid
+    this.props.api.passKeyword({
+      [Vocabulary.keyword]: this.state.searchKeyword
     })
-      .then(res => {
-        console.log(res);
-        let searchResults = res.data.items;
+      .then(response => response.rawData)
+      .then(data => {
+        console.log(data);
+        let searchResults = data.items;
         // console.log(searchResults);
         this.setState({ searchResults });
         console.log(this.state.searchResults);
@@ -184,4 +186,4 @@ Search.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Search);
+export default withApi(withStyles(styles)(Search));
