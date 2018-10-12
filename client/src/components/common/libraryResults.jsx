@@ -28,8 +28,12 @@ const styles = theme => ({
     overflow: "hidden",
     backgroundColor: theme.palette.background.paper
   },
+  root: {
+    width: "60%",
+    marginBottom: 30
+  },
   gridList: {
-    width: "55%",
+    width: "90%",
     height: "auto"
   },
   icon: {
@@ -37,6 +41,9 @@ const styles = theme => ({
   },
   close: {
     padding: theme.spacing.unit / 2
+  },
+  subHeader: {
+    marginLeft: -22
   }
 });
 
@@ -70,24 +77,30 @@ class LibraryResults extends Component {
   render() {
     console.log(this.state.libraryResults);
     const { classes } = this.props;
-    const urlPrefix = "https://www.youtube.com/watch?v="
+    const urlPrefix = "https://www.youtube.com/watch?v=";
     return (
       <React.Fragment>
-        <Grid container direction="row" alignItems="center" justify="center">
+        <Grid
+          container
+          direction="row"
+          alignItems="center"
+          justify="center"
+          className={classes.root}
+        >
           <div className={classes.gridRoot}>
             <GridList cellHeight={180} className={classes.gridList} cols={4}>
               <GridListTile key="Subheader" cols={4} style={{ height: "auto" }}>
-                <ListSubheader component="div">
-                  Showing Your Library Watchlist Below:
+                <ListSubheader component="div" className={classes.subHeader}>
+                  Watch List:
                 </ListSubheader>
               </GridListTile>
               {this.state.libraryResults.map(libraryResult => (
                 <GridListTile key={libraryResult.videoId}>
-                <a target="_blank" href= {urlPrefix + libraryResult.videoId}>
-                  <img
-                    src={libraryResult.thumbnailUrl}
-                    alt={libraryResult.channelTitle}
-                  />
+                  <a target="_blank" href={urlPrefix + libraryResult.videoId}>
+                    <img
+                      src={libraryResult.thumbnailUrl}
+                      alt={libraryResult.channelTitle}
+                    />
                   </a>
                   <GridListTileBar title={libraryResult.title} />
                 </GridListTile>

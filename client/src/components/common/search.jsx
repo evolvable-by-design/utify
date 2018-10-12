@@ -27,10 +27,12 @@ const styles = theme => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
     overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: theme.palette.background.paper,
+    width: "60%"
   },
+
   gridList: {
-    width: "55%",
+    width: "95%",
     height: "auto"
   },
   icon: {

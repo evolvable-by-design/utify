@@ -38,6 +38,9 @@ const styles = theme => ({
   root: {
     width: "60%"
   },
+  appBar: {
+    background: "#00897b"
+  },
   grow: {
     flexGrow: 1
   },
@@ -119,7 +122,7 @@ const styles = theme => ({
     transform: "translateZ(0)"
   },
   title: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary
   },
   titleBar: {
     background:
@@ -130,6 +133,7 @@ const styles = theme => ({
 class SearchTopNav extends Component {
   state = {
     anchorEl: null,
+    anchorEl1: null,
     mobileMoreAnchorEl: null,
     searchKeyword: "",
     user: "",
@@ -192,8 +196,16 @@ class SearchTopNav extends Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleClick = event => {
+    this.setState({ anchorEl1: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl1: null });
+  };
+
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, anchorEl1 } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -222,7 +234,7 @@ class SearchTopNav extends Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge
               className={classes.margin}
               badgeContent={4}
@@ -230,8 +242,8 @@ class SearchTopNav extends Component {
             >
               <MailIcon />
             </Badge>
-          </IconButton>
-          <p>Messages</p>
+          </IconButton> */}
+          {/* <p>Messages</p>
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
@@ -243,7 +255,7 @@ class SearchTopNav extends Component {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <p>Notifications</p>
+          <p>Notifications</p> */}
         </MenuItem>
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <IconButton color="inherit">
@@ -257,15 +269,30 @@ class SearchTopNav extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <IconButton
               className={classes.menuButton}
               color="inherit"
               aria-label="Open drawer"
+              aria-owns={anchorEl1 ? "simple-menu" : null}
+              aria-haspopup="true"
+              onClick={this.handleClick}
             >
               <MenuIcon />
             </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl1}
+              open={Boolean(anchorEl1)}
+              onClose={this.handleClose}
+            >
+              <MenuItem>
+                <Link to="/members">Library</Link>
+              </MenuItem>
+              <MenuItem>Group Tracks</MenuItem>
+              <MenuItem>Logout</MenuItem>
+            </Menu>
             <Typography
               className={classes.title}
               variant="title"
@@ -275,10 +302,8 @@ class SearchTopNav extends Component {
               Utify
             </Typography>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <form onSubmit={this.handleSubmit}>
+              <div className={classes.searchIcon}>{/* <SearchIcon /> */}</div>
+              {/* <form onSubmit={this.handleSubmit}>
                 <Input
                   ref={this.searchField}
                   autoFocus
@@ -291,11 +316,11 @@ class SearchTopNav extends Component {
                     input: classes.inputInput
                   }}
                 />
-              </form>
+              </form> */}
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
+              {/* <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
                   badgeContent={4}
@@ -303,8 +328,8 @@ class SearchTopNav extends Component {
                 >
                   <MailIcon />
                 </Badge>
-              </IconButton>
-              <IconButton color="inherit">
+              </IconButton> */}
+              {/* <IconButton color="inherit">
                 <Badge
                   className={classes.margin}
                   badgeContent={17}
@@ -312,7 +337,7 @@ class SearchTopNav extends Component {
                 >
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
+              </IconButton> */}
               <IconButton
                 aria-owns={isMenuOpen ? "material-appbar" : null}
                 aria-haspopup="true"
@@ -331,6 +356,14 @@ class SearchTopNav extends Component {
                 <MoreIcon />
               </IconButton>
             </div>
+            <Typography
+              className={classes.title}
+              variant="subheading"
+              color="inherit"
+              noWrap
+            >
+              {this.state.user}
+            </Typography>
           </Toolbar>
         </AppBar>
         {renderMenu}
