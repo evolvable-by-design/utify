@@ -36,6 +36,9 @@ const styles = theme => ({
   root: {
     width: "60%"
   },
+  appBar: {
+    background: "#00897b"
+  },
   grow: {
     flexGrow: 1
   },
@@ -117,7 +120,7 @@ const styles = theme => ({
     transform: "translateZ(0)"
   },
   title: {
-    color: theme.palette.primary.light
+    color: theme.palette.primary
   },
   titleBar: {
     background:
@@ -128,6 +131,7 @@ const styles = theme => ({
 class PrimarySearchAppBar extends Component {
   state = {
     anchorEl: null,
+    anchorEl1: null,
     mobileMoreAnchorEl: null,
     searchKeyword: "",
     user: "",
@@ -193,8 +197,16 @@ class PrimarySearchAppBar extends Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleClick = event => {
+    this.setState({ anchorEl1: event.currentTarget });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl1: null });
+  };
+
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, anchorEl1 } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -274,15 +286,30 @@ class PrimarySearchAppBar extends Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <IconButton
               className={classes.menuButton}
               color="inherit"
               aria-label="Open drawer"
+              aria-owns={anchorEl1 ? "simple-menu" : null}
+              aria-haspopup="true"
+              onClick={this.handleClick}
             >
               <MenuIcon />
             </IconButton>
+            <Menu
+              id="simple-menu"
+              anchorEl={anchorEl1}
+              open={Boolean(anchorEl1)}
+              onClose={this.handleClose}
+            >
+              <MenuItem>
+                <Link to="/members">Library</Link>
+              </MenuItem>
+              <MenuItem>Group Tracks</MenuItem>
+              <MenuItem>Logout</MenuItem>
+            </Menu>
             <Typography
               className={classes.title}
               variant="title"

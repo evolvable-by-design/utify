@@ -6,6 +6,8 @@ import PrimarySearchAppBar from "./common/topNav";
 import LibraryResults from "./common/libraryResults";
 import Carousal from "./common/carousal";
 
+import "./membersPage.css";
+
 class MemberPage extends Component {
   state = {};
 
