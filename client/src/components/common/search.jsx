@@ -40,6 +40,12 @@ const styles = theme => ({
   },
   close: {
     padding: theme.spacing.unit / 2
+  },
+  subheadingStyle: {
+    marginLeft: 55,
+    fontWeight: "bold",
+    paddingTop: 10,
+    paddingBottom: 5
   }
 });
 
@@ -115,11 +121,14 @@ class Search extends Component {
 
         <Grid container direction="row" alignItems="center" justify="center">
           <div className={classes.gridRoot}>
+            <Grid container direction="row" className={classes.subheadingStyle}>
+              Showing Results for "{this.state.searchKeyword}"
+            </Grid>
             <GridList cellHeight={180} className={classes.gridList} cols={4}>
               <GridListTile key="Subheader" cols={4} style={{ height: "auto" }}>
-                <ListSubheader component="div">
+                {/* <ListSubheader component="div">
                   Showing Results for {this.state.searchKeyword}
-                </ListSubheader>
+                </ListSubheader> */}
               </GridListTile>
               {this.state.searchResults.map(searchResult => (
                 <GridListTile key={searchResult.id.videoId}>

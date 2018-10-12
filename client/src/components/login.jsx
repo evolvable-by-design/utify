@@ -7,6 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   logoPosition: {
@@ -88,6 +89,10 @@ class login extends Component {
     AuthenticationService.removeToken();
   };
 
+  goToLibrary = () => {
+    this.props.history.push("/members");
+  };
+
   googleResponse = response => {
     console.log(response);
     const tokenBlob = new Blob(
@@ -125,9 +130,14 @@ class login extends Component {
     const { classes } = this.props;
     let content = !!this.state.isAuthenticated ? (
       <div>
-        <p>Authenticated</p>
-        <div>{localStorage.getItem("user")}</div>
-        <div>{this.state.user.email}</div>
+        <p>Hi, {localStorage.getItem("user")}. You are Authenticated</p>
+        <button className="button" onClick={this.goToLibrary}>
+          Back to Library
+        </button>
+        {/* <div>{localStorage.getItem("user")}</div>
+        <div>{this.state.user.email}</div> */}
+        <br />
+        <br />
         <div>
           <button onClick={this.logout} className="button">
             Log out

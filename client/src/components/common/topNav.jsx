@@ -311,7 +311,9 @@ class PrimarySearchAppBar extends Component {
                 <Link to="/members">Library</Link>
               </MenuItem>
               <MenuItem>Group Tracks</MenuItem>
-              <MenuItem>Logout</MenuItem>
+              <MenuItem>
+                <Link to="/auth/login">Logout</Link>
+              </MenuItem>
             </Menu>
             <Typography
               className={classes.title}

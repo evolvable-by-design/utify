@@ -53,6 +53,8 @@ const styles = theme => ({
 
 const PreLoginHome = props => {
   const { classes } = props;
+  const user = localStorage.getItem("user");
+  console.log("from pre-loginpage:" + user);
 
   const handleLogIn = () => {
     // push can be replaced with "replace" if you dont want the user to click back button and go back to the pre-login page
