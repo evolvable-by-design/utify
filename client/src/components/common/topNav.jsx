@@ -305,9 +305,10 @@ class PrimarySearchAppBar extends Component {
               onClose={this.handleClose}
             >
               <MenuItem>
-                <Link to="/members">Library</Link>
+                <Link to="/members">You Tube Library</Link>
               </MenuItem>
-              <MenuItem>Group Tracks</MenuItem>
+              <MenuItem>Spotify Library</MenuItem>
+              <MenuItem>Pandora Library</MenuItem>
               <MenuItem>
                 <Link to="/auth/login">Logout</Link>
               </MenuItem>
