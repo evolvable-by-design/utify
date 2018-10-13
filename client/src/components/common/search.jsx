@@ -19,6 +19,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
+import TagVideo from "./tagVideo";
 
 const styles = theme => ({
   gridRoot: {
@@ -138,12 +139,13 @@ class Search extends Component {
                     title={searchResult.snippet.title}
                     actionIcon={
                       <Tooltip title="Add to Watch List" placement="top-start">
-                        <IconButton
+                        {/* <IconButton
                           className={classes.icon}
                           onClick={() => this.handleClick(searchResult)}
                         >
                           <PlaylistAdd />
-                        </IconButton>
+                        </IconButton> */}
+                        <TagVideo video={searchResult} />
                       </Tooltip>
                     }
                   />
