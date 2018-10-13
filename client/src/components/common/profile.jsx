@@ -12,6 +12,7 @@ import FolderIcon from "@material-ui/icons/Folder";
 import PermIdentity from "@material-ui/icons/PermIdentity";
 import Face from "@material-ui/icons/Face";
 
+import Typography from "@material-ui/core/Typography";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -21,6 +22,23 @@ const styles = theme => ({
     width: "60%",
     backgroundColor: theme.palette.background.paper,
     height: 500
+  },
+  bigAvatar: {
+    width: 200,
+    height: 200,
+    position: "relative"
+  },
+  profilePosition: {
+    left: "35%",
+    marginRight: 0,
+    position: "relative",
+    width: "50%",
+    padding: "5%"
+  },
+  namePosition: {
+    position: "relative",
+    fontWeight: "bold",
+    fontSize: "2em"
   }
 });
 
@@ -74,26 +92,36 @@ class Profile extends Component {
           Avatar:
           <ImageAvatars imageUrl={this.state.userObjDb.picture} /> */}
           <div className={classes.root}>
-            <List>
-              <ListItem dense button className={classes.listItem}>
-                <Avatar
-                  alt={this.state.userid}
-                  src={this.state.userObjDb.picture}
-                />
-                <ListItemText primary={this.state.user} />
-              </ListItem>
-              <ListItem dense button className={classes.listItem}>
+            <List className={classes.profilePosition}>
+              {/* <ListItem dense button className={classes.listItem}> */}
+              <Avatar
+                alt={this.state.userid}
+                src={this.state.userObjDb.picture}
+                className={classes.bigAvatar}
+              />
+              {/* </ListItem> */}
+              <Typography
+                variant="h4"
+                gutterBottom
+                className={classes.namePosition}
+              >
+                {this.state.user}
+              </Typography>
+
+              {/* <ListItem dense button className={classes.listItem}>
                 <Avatar>
                   <PermIdentity />
                 </Avatar>
-                <ListItemText primary={this.state.userid} />
-              </ListItem>
-              <ListItem dense button className={classes.listItem}>
+                <ListItemText primary= UserId: {this.state.userid} />
+              </ListItem> */}
+              <ListItemText secondary={this.state.userid} />
+              {/* <ListItem dense button className={classes.listItem}>
                 <Avatar>
                   <Face />
                 </Avatar>
-                <ListItemText primary={this.state.userObjDb.gender} />
-              </ListItem>
+                
+              </ListItem> */}
+              {/* <ListItemText primary={this.state.userObjDb.gender} /> */}
             </List>
           </div>
         </Grid>
