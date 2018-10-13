@@ -119,7 +119,9 @@ class TagVideo extends React.Component {
           ContentProps={{
             "aria-describedby": "message-id"
           }}
-          message={<span id="message-id">Added to Watchlist</span>}
+          message={
+            <span id="message-id">Added to {this.state.option} Watchlist</span>
+          }
           action={[
             <Button
               key="undo"
