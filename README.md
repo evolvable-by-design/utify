@@ -8,12 +8,12 @@ Utify enables a single keyword search which brings back results from multiple en
 
 ## MVP Features
 
-### Google OAuth based authentication and authorization process
-### Navigation based keyword search that brings back Youtube based video results
-### Library page that presents a personaized view of your favorite videos
-### Easy ability to tag your favorite video results 
-### Personalized profile page bringing Google based identitiy data
-### Seamless logout process
+* Google OAuth based authentication and authorization process
+* Navigation based keyword search that brings back Youtube based video results
+* Library page that presents a personaized view of your favorite videos
+* Easy ability to tag your favorite video results 
+* Personalized profile page bringing Google based identitiy data
+* Seamless logout process
 
 ## Technolgies
 
@@ -32,8 +32,8 @@ Utify enables a single keyword search which brings back results from multiple en
 
 ## Development Process
 
-Iteration based development moving code base from local development enviornment to heroku hosted test site and fiannly to heroku production
-Seperate hosting enviornments for development and master branchs
+* Iteration based development moving code base from local development enviornment to heroku hosted test site and fiannly to heroku production
+* Seperate hosting enviornments for development and master branchs
 
 ## Deployment (Heroku)
 
