@@ -2,39 +2,43 @@
 
 ## About
 
-Utify is one stop shop for all your web based entertainment needs brining together multiple entertainment channels.
+Utify is one stop shop for all your web based entertainment needs bringing together multiple entertainment channels.
 
-Utify enables a keyword search which brings back results from multiple entertainement data sources including YouTube, Spotify , Pandora etc. 
+Utify enables a keyword search which brings back results from multiple entertainment data sources including YouTube, Spotify , Pandora etc. 
 
 ## MVP Features
 
-* Google OAuth based authentication and authorization process
-* Easy to use UI
-* Navigation based keyword search that brings back Youtube based video results
-* Library that presents a personalized view of your favorite videos
-* Easy ability to tag your favorite video results 
-* Personalized profile page bringing Google based identitiy data
-* Seamless logout process
+*	Google OAuth based authentication and authorization process
+*	Easy to use UI
+*	Navigation based keyword search that brings back Youtube based video results
+*	Library that presents a personalized view of your favorite videos
+*	Easy ability to tag your favorite video results
+*	Personalized profile page bringing Google based identity data
+*	Seamless logout process
+
 
 ## Technologies
 
-* React and React Routing systems
-* Material UI - Leading React style library
-* Google OAuth for authentication
-* Google API for profile data
-* You Tube API for You Tube data
-* Passport as middle-wear for Google OAuth
-* JSON WT for client session
-* Local Storage options
-* Express Servers
-* Node JS
-* Mongo with Mongoose
-* Git/Git Hub for code base management
+*	React and React Routing systems
+*	Material UI - Leading React style library
+*	Google OAuth for authentication
+*	Google API for profile data
+*	You Tube API for You Tube data
+*	Passport as middle-wear for Google OAuth
+*	JSON WT for client session
+*	Local Storage options
+*	Express Servers
+*	Node JS
+*	Mongo with Mongoose
+*	Git/Git Hub for code base management
+
+
 
 ## Development Process
 
-* Iteration based development moving code base from local development enviornment to heroku hosted test site and finally to heroku production
-* Seperate hosting enviornments for development and master branchs
+*	Iteration based development moving code base from local development environment to heroku hosted test site and finally to heroku production
+*	Separate hosting environments for development and master branches
+
 
 ## Deployment (Heroku)
 
