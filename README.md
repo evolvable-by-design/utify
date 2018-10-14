@@ -1,6 +1,6 @@
 # Utify - A music and entertainment channels integrator
 
-## About it
+## About
 
 Utify is one stop shop for all your web based entertainment needs brining together multiple entertainment channels.
 
