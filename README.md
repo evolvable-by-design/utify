@@ -4,7 +4,7 @@
 
 Utify is one stop shop for all your web based entertainment needs brining together multiple entertainment channels.
 
-Utify enables a single keyword search which brings back results from multiple entertainement data sources including YouTube, Spotify , Pandora etc. 
+Utify enables a keyword search which brings back results from multiple entertainement data sources including YouTube, Spotify , Pandora etc. 
 
 ## MVP Features
 
