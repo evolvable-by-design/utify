@@ -15,7 +15,7 @@ Utify enables a single keyword search which brings back results from multiple en
 * Personalized profile page bringing Google based identitiy data
 * Seamless logout process
 
-## Technolgies
+## Technologies
 
 * React and React Routing systems
 * Material UI - Leading React style library
