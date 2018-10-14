@@ -1,4 +1,4 @@
-# Utify - A music and entertainment channels integrator
+# Utify&copy; - A music and entertainment channels integrator
 
 ## About
 
