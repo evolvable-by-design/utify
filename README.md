@@ -33,7 +33,7 @@ Utify enables a single keyword search which brings back results from multiple en
 
 ## Development Process
 
-* Iteration based development moving code base from local development enviornment to heroku hosted test site and fiannly to heroku production
+* Iteration based development moving code base from local development enviornment to heroku hosted test site and finally to heroku production
 * Seperate hosting enviornments for development and master branchs
 
 ## Deployment (Heroku)
