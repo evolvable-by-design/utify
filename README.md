@@ -17,18 +17,18 @@ Utify enables a single keyword search which brings back results from multiple en
 
 ## Technolgies
 
-### React and React Routing systems
-### Material UI - Leading React style library
-### Google OAuth for authentication
-### Google API for profile data
-### You Tube API for You Tube data
-### Passport as middle wear for Google OAuth
-### JSON WT for client session
-### Local Storage options
-### Express Servers
-### Node JS
-### Mongo with Mongoose
-### Git/Git Hub for code base management
+* React and React Routing systems
+* Material UI - Leading React style library
+* Google OAuth for authentication
+* Google API for profile data
+* You Tube API for You Tube data
+* Passport as middle wear for Google OAuth
+* JSON WT for client session
+* Local Storage options
+* Express Servers
+* Node JS
+* Mongo with Mongoose
+* Git/Git Hub for code base management
 
 ## Development Process
 
