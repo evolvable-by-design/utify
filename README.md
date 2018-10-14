@@ -23,7 +23,7 @@ Utify enables a single keyword search which brings back results from multiple en
 * Google OAuth for authentication
 * Google API for profile data
 * You Tube API for You Tube data
-* Passport as middle wear for Google OAuth
+* Passport as middle-wear for Google OAuth
 * JSON WT for client session
 * Local Storage options
 * Express Servers
