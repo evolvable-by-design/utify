@@ -1,29 +1,41 @@
-# Create React Express App
+# Utify - A music and entertainment channels integrator
 
-## About This Boilerplate
+## About
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+Utify is one stop shop for all your web based entertainment needs brining together multiple entertainment channels.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+Utify enables a keyword search which brings back results from multiple entertainement data sources including YouTube, Spotify , Pandora etc. 
 
-## Starting the app locally
+## MVP Features
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+* Google OAuth based authentication and authorization process
+* Easy to use UI
+* Navigation based keyword search that brings back Youtube based video results
+* Library that presents a personalized view of your favorite videos
+* Easy ability to tag your favorite video results 
+* Personalized profile page bringing Google based identitiy data
+* Seamless logout process
 
-```
-yarn install
-```
+## Technologies
 
-This should install node modules within the server and the client folder.
+* React and React Routing systems
+* Material UI - Leading React style library
+* Google OAuth for authentication
+* Google API for profile data
+* You Tube API for You Tube data
+* Passport as middle-wear for Google OAuth
+* JSON WT for client session
+* Local Storage options
+* Express Servers
+* Node JS
+* Mongo with Mongoose
+* Git/Git Hub for code base management
 
-After both installations complete, run the following command in your terminal:
+## Development Process
 
-```
-yarn start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+* Iteration based development moving code base from local development enviornment to heroku hosted test site and finally to heroku production
+* Seperate hosting enviornments for development and master branchs
 
 ## Deployment (Heroku)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+The App is deployed to Heroku
