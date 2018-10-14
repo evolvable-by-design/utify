@@ -9,6 +9,7 @@ Utify enables a single keyword search which brings back results from multiple en
 ## MVP Features
 
 * Google OAuth based authentication and authorization process
+* Easy to use UI
 * Navigation based keyword search that brings back Youtube based video results
 * Library page that presents a personalized view of your favorite videos
 * Easy ability to tag your favorite video results 
