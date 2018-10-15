@@ -148,6 +148,7 @@ class login extends Component {
         <GoogleLogin
           clientId={config.GOOGLE_CLIENT_ID}
           buttonText="Google"
+          scope="https://www.googleapis.com/auth/youtube"
           onSuccess={this.googleResponse}
           onFailure={this.googleResponse}
           cursor="pointer"
