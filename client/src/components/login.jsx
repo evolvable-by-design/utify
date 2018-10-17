@@ -82,9 +82,10 @@ class login extends Component {
   }
 
   logout = () => {
-    this.setState({ isAuthenticated: false, token: "", user: null });
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
+    this.setState({ isAuthenticated: false, token: "", user: null }, () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    });
   };
 
   goToLibrary = () => {
@@ -108,13 +109,14 @@ class login extends Component {
       const token = r.headers.get("x-auth-token");
       r.json().then(user => {
         if (token) {
-          this.setState({ isAuthenticated: true, user, token });
-          console.log(this.state.user);
-          localStorage.setItem("token", this.state.token);
-          localStorage.setItem("user", this.state.user.fullName);
-          localStorage.setItem("userid", this.state.user._id);
-          localStorage.setItem("imageUrl", this.state.user.picture);
-          this.props.history.replace("/members");
+          this.setState({ isAuthenticated: true, user, token }, () => {
+            console.log(this.state.user);
+            localStorage.setItem("token", this.state.token);
+            localStorage.setItem("user", this.state.user.fullName);
+            localStorage.setItem("userid", this.state.user._id);
+            localStorage.setItem("imageUrl", this.state.user.picture);
+            this.props.history.replace("/members");
+          });
         }
       });
     });
@@ -146,6 +148,7 @@ class login extends Component {
         <GoogleLogin
           clientId={config.GOOGLE_CLIENT_ID}
           buttonText="Google"
+          scope="https://www.googleapis.com/auth/youtube"
           onSuccess={this.googleResponse}
           onFailure={this.googleResponse}
           cursor="pointer"
