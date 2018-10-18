@@ -14,6 +14,9 @@ import Face from "@material-ui/icons/Face";
 
 import Typography from "@material-ui/core/Typography";
 import ListItemText from "@material-ui/core/ListItemText";
+// import ChipInput from "material-ui-chip-input";
+
+import Chips from "./chip";
 
 import Avatar from "@material-ui/core/Avatar";
 
@@ -74,32 +77,28 @@ class Profile extends Component {
         console.log(err);
       });
   };
+
+  handleChange = chips => {
+    console.log(chips);
+  };
+
   render() {
     const { classes } = this.props;
+
     return (
       <React.Fragment>
         <Grid container direction="row" alignItems="center" justify="center">
           <PrimarySearchAppBar />
         </Grid>
         <Grid container direction="row" alignItems="center" justify="center">
-          {/* User Id: {this.state.userid}
-          <br />
-          User Name:
-          {this.state.user}
-          <br />
-          Gender: {this.state.userObjDb.gender}
-          <br />
-          Avatar:
-          <ImageAvatars imageUrl={this.state.userObjDb.picture} /> */}
           <div className={classes.root}>
             <List className={classes.profilePosition}>
-              {/* <ListItem dense button className={classes.listItem}> */}
               <Avatar
                 alt={this.state.userid}
                 src={this.state.userObjDb.picture}
                 className={classes.bigAvatar}
               />
-              {/* </ListItem> */}
+
               <Typography
                 variant="h4"
                 gutterBottom
@@ -108,21 +107,15 @@ class Profile extends Component {
                 {this.state.user}
               </Typography>
 
-              {/* <ListItem dense button className={classes.listItem}>
-                <Avatar>
-                  <PermIdentity />
-                </Avatar>
-                <ListItemText primary= UserId: {this.state.userid} />
-              </ListItem> */}
               <ListItemText secondary={this.state.userid} />
-              {/* <ListItem dense button className={classes.listItem}>
-                <Avatar>
-                  <Face />
-                </Avatar>
-                
-              </ListItem> */}
-              {/* <ListItemText primary={this.state.userObjDb.gender} /> */}
             </List>
+
+            <Chips />
+
+            {/* <ChipInput
+              defaultValue={["foo", "bar"]}
+              onChange={chips => this.handleChange(chips)}
+            /> */}
           </div>
         </Grid>
       </React.Fragment>

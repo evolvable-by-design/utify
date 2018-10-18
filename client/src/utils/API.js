@@ -15,5 +15,11 @@ export default {
   },
   passUserIdVideoLibraryResults: function(userid) {
     return axios.post("/api/libraryResults", userid);
+  },
+  passUserChip: function(userid) {
+    return axios.post("/api/chipInsert", userid);
+  },
+  passUserIdGetChipData: function(userid) {
+    return axios.post("api/chipData", userid);
   }
 };

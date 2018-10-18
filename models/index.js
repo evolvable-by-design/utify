@@ -1,3 +1,4 @@
 module.exports = {
-  LibraryItem: require("./library")
+  LibraryItem: require("./library"),
+  UserChip: require("./chips")
 };
