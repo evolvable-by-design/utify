@@ -11,8 +11,6 @@ import { withStyles } from "@material-ui/core/styles";
 
 import API from "../../utils/API";
 
-const options = ["Lifestyle", "Comedy", "Music Videos", "Motivational"];
-
 const ITEM_HEIGHT = 48;
 
 const styles = theme => ({
@@ -27,11 +25,32 @@ class TagVideo extends React.Component {
     videoRecord: this.props.video,
     userid: localStorage.getItem("userid"),
     option: "",
+    options: [],
     open: false
   };
 
   handleClick = event => {
     this.setState({ anchorEl: event.currentTarget });
+  };
+
+  componentDidMount() {
+    this.loadChipData();
+  }
+
+  loadChipData = () => {
+    API.passUserIdGetChipData({
+      userid: this.state.userid
+    })
+      .then(res => {
+        console.log(res.data[0].chips);
+        let options = res.data[0].chips;
+        this.setState({ options }, () => {
+          console.log("options data " + this.state.options[0]);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   handleClose = option => {
@@ -98,13 +117,13 @@ class TagVideo extends React.Component {
             }
           }}
         >
-          {options.map(option => (
+          {this.state.options.map(option => (
             <MenuItem
-              key={option}
+              key={option._id}
               selected={option === "Pyxis"}
-              onClick={() => this.handleClose(option)}
+              onClick={() => this.handleClose(option.label)}
             >
-              {option}
+              {option.label}
             </MenuItem>
           ))}
         </Menu>
