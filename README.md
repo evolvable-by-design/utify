@@ -9,6 +9,7 @@ Utify enables a keyword search which brings back results from multiple entertain
 ## MVP Features
 
 *	Google OAuth based authentication and authorization process
+* YouTube Data API Integration for keyword searchability
 *	Easy to use UI
 * Create custom channel tags for tagging video results
 *	Navigation based keyword search that brings back Youtube based video results
