@@ -49,7 +49,7 @@ The App is deployed to Heroku
 ## Landing Screen
 ![Login Screen](https://github.com/georgejacobt/utify/blob/master/screenShots/login.JPG)
 
-## Goole oAuth Trigger Page
+## Google oAuth Trigger Page
 ![Google Login](https://github.com/georgejacobt/utify/blob/master/screenShots/GoogleLogin.JPG)
 
 ## Keyword Search Results Grid
