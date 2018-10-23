@@ -10,6 +10,7 @@ Utify enables a keyword search which brings back results from multiple entertain
 
 *	Google OAuth based authentication and authorization process
 *	Easy to use UI
+* Create custom channel tags for tagging video results
 *	Navigation based keyword search that brings back Youtube based video results
 *	Library that presents a personalized view of your favorite videos
 *	Easy ability to tag your favorite video results
