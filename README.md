@@ -43,3 +43,22 @@ Utify enables a keyword search which brings back results from multiple entertain
 ## Deployment (Heroku)
 
 The App is deployed to Heroku
+
+
+## Landing Screen
+![Login Screen](https://github.com/georgejacobt/utify/blob/master/screenShots/login.JPG)
+
+## Goole oAuth Trigger Page
+![Google Login](https://github.com/georgejacobt/utify/blob/master/screenShots/GoogleLogin.JPG)
+
+## Keyword Search Results Grid
+![Search Results](https://github.com/georgejacobt/utify/blob/master/screenShots/searchscreen.JPG)
+
+## Video Library View
+![Library](https://github.com/georgejacobt/utify/blob/master/screenShots/library.JPG)
+
+## User Profile and Channel Tags set Up
+![User Profile](https://github.com/georgejacobt/utify/blob/master/screenShots/profile.JPG)
+
+
+
