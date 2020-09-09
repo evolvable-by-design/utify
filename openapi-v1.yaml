@@ -1,0 +1,44 @@
+openapi: '3.0.3'
+info:
+  version: 1.0.0
+  title: Utify
+servers:
+  - description: Local server
+    url: 'http://localhost:3001/api'
+
+paths:
+  /v1/auth/google:
+    post:
+      summary: Transfer Google Tokens to process authentication
+      operationId: authWithGoogle
+      responses:
+        '204':
+          description: No content
+  /search:
+    post:
+      summary: Search the youtube API with the provided keyword
+      operationId: searchOperation
+      x-@id: evolvable:search
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keyword:
+                  x-@id: evolvable:keyword
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              example: 'hello'
+                  
+# json-LD context
+x-@context:
+  x-@context: '@context'
+  x-@id: '@id'
+  x-@type: '@type'
+  x-@relation: 'dce:relation'
+  evolvable: 'https://github.com/evolvable-by-design/use-cases/utify/vocab#'

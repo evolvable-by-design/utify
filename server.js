@@ -16,9 +16,10 @@ const PORT = process.env.PORT || 3001;
 
 var corsOption = {
   origin: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   credentials: true,
-  exposedHeaders: ["x-auth-token"]
+  exposedHeaders: ["x-auth-token"],
+  preflightContinue: true
 };
 
 app.use(cors(corsOption));

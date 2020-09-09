@@ -30,7 +30,11 @@ router.route("/auth/google").post(
 
 // If no API routes are hit, send the React app
 router.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  if (req.method === 'OPTIONS') {
+    res.send();
+  } else { 
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  }
 });
 
 module.exports = router;

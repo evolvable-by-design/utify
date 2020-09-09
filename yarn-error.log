@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /Users/acheron/.yarn/bin/yarn.js install
+  /usr/local/bin/node /Users/acheron/.yarn/bin/yarn.js add path
 
 PATH: 
-  /Users/acheron/.yarn/bin:/Users/acheron/.config/yarn/global/node_modules/.bin:/usr/local/Cellar/sonarqube/8.4.1.35646/bin:/Users/acheron/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/usr/local/opt/elasticsearch@5.6/bin:/usr/local/Cellar/openvpn/2.4.7_1/sbin
+  /Users/acheron/.yarn/bin:/Users/acheron/.config/yarn/global/node_modules/.bin:/usr/local/Cellar/sonarqube/8.4.1.35646/bin:/Users/acheron/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Users/acheron/.yarn/bin:/Users/acheron/.config/yarn/global/node_modules/.bin:/usr/local/Cellar/sonarqube/8.4.1.35646/bin:/Users/acheron/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/opt/elasticsearch@5.6/bin:/usr/local/Cellar/openvpn/2.4.7_1/sbin:/usr/local/opt/elasticsearch@5.6/bin:/usr/local/Cellar/openvpn/2.4.7_1/sbin
 
 Yarn version: 
   1.22.5
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/flatmap-stream/-/flatmap-stream-0.1.0.tgz: Request failed "404 Not Found"
+  Error: https://registry.yarnpkg.com/event-stream/-/event-stream-3.3.6.tgz: Request failed "404 Not Found"
       at ResponseError.ExtendableBuiltin (/Users/acheron/.yarn/lib/cli.js:696:66)
       at new ResponseError (/Users/acheron/.yarn/lib/cli.js:802:124)
       at Request.<anonymous> (/Users/acheron/.yarn/lib/cli.js:67058:16)
