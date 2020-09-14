@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const searchController = require("../controllers/searchController");
+const profileController = require("../controllers/profileController");
 const path = require('path')
 const YAML = require('yamljs')
 const { withAuth } = require("../utils/authentication.utils")
@@ -19,5 +20,7 @@ router.route("/documentation").get(withAuth((req, res) => {
 //matches with "/api/search"
 
 router.route("/search").post(searchController.search);
+
+router.route("/profile").post(profileController.profile);
 
 module.exports = router;

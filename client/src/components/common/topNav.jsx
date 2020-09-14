@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import GridList from "@material-ui/core/GridList";
@@ -25,6 +26,8 @@ import MoreIcon from "@material-ui/icons/MoreVert";
 import TextField from "@material-ui/core/TextField";
 import green from "@material-ui/core/colors/green";
 import teal from "@material-ui/core/colors/teal";
+import { browserHistory, withRouter } from "react-router-dom";
+import ImageAvatars from "./avatar";
 import API from "../../utils/API";
 import YouTubeVideo from "./videoResult";
 import withApi from "../componentWithApi";
@@ -114,6 +117,9 @@ const styles = theme => ({
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: "translateZ(0)"
   },
+  title: {
+    color: theme.palette.primary.light
+  },
   titleBar: {
     background:
       "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)"
@@ -186,6 +192,10 @@ class PrimarySearchAppBar extends Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  handleProfileOpen = () => {
+    this.props.history.push("/profile");
+  };
+
   render() {
     const { anchorEl, mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
@@ -200,7 +210,9 @@ class PrimarySearchAppBar extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+        <MenuItem>
+          <Link to="/profile">Profile</Link>
+        </MenuItem>
         <MenuItem onClick={this.handleClose}>Log Out</MenuItem>
       </Menu>
     );
@@ -240,6 +252,7 @@ class PrimarySearchAppBar extends Component {
         <MenuItem onClick={this.handleProfileMenuOpen}>
           <IconButton color="inherit">
             <AccountCircle />
+            {/* <ImageAvatars imageUrl={localStorage.getItem.imageUrl} /> */}
           </IconButton>
           <p>Profile</p>
         </MenuItem>
@@ -340,10 +353,26 @@ class PrimarySearchAppBar extends Component {
           >
             {this.state.searchResults.map(searchResult => (
               <GridListTile key={searchResult.id.videoId}>
-                <YouTubeVideo videoId={searchResult.id.videoId} />
-                <IconButton aria-label="Delete" className={classes.button}>
+                <img
+                  src={searchResult.snippet.thumbnails.medium.url}
+                  alt={searchResult.snippet.channelTitle}
+                />
+                <GridListTileBar
+                  title={searchResult.snippet.title}
+                  classes={{
+                    root: classes.titleBar,
+                    title: classes.title
+                  }}
+                  actionIcon={
+                    <IconButton>
+                      <StarBorderIcon className={classes.title} />
+                    </IconButton>
+                  }
+                />
+                {/* <YouTubeVideo videoId={searchResult.id.videoId} /> */}
+                {/* <IconButton aria-label="Delete" className={classes.button}>
                   <FavoriteIcon fontSize="small" />
-                </IconButton>
+                </IconButton> */}
               </GridListTile>
             ))}
           </GridList>

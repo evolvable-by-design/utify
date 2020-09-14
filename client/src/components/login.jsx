@@ -105,9 +105,11 @@ class login extends Component {
       r.json().then(user => {
         if (token) {
           this.setState({ isAuthenticated: true, user, token });
+          console.log(this.state.user);
           localStorage.setItem("token", this.state.token);
           localStorage.setItem("user", this.state.user.fullName);
           localStorage.setItem("userid", this.state.user._id);
+          localStorage.setItem("imageUrl", this.state.user.picture);
           AuthenticationService.updateToken(token);
           this.props.history.replace("/members");
         }
@@ -123,7 +125,7 @@ class login extends Component {
     let content = !!this.state.isAuthenticated ? (
       <div>
         <p>Authenticated</p>
-        <div>{this.state.user.fullName}</div>
+        <div>{localStorage.getItem("user")}</div>
         <div>{this.state.user.email}</div>
         <div>
           <button onClick={this.logout} className="button">

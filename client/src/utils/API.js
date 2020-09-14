@@ -1,3 +1,4 @@
+import axios from "axios"
 import { Vocabulary } from '../vocabulary';
 
 export default class API {
@@ -14,6 +15,10 @@ export default class API {
     } else {
       throw new Error('Impossible to perform search')
     }
+  }
+
+  static passUserId(userid) {
+    return axios.post("/api/profile", userid);
   }
 
 }
