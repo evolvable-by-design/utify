@@ -57,7 +57,12 @@ app.use("/api/v1/", routes);
 app.use("/api", searchRoutes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/utify");
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/utify";
+
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
 
 // Start the API server
 app.listen(PORT, () => {
