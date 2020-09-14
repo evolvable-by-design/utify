@@ -9,7 +9,8 @@ import config from "./config";
 class MemberPage extends React.Component {
   state = {
     searchKeyword: "",
-    user: ""
+    user: "",
+    userid: ""
   };
 
   constructor(props) {
@@ -19,7 +20,9 @@ class MemberPage extends React.Component {
 
   componentDidMount() {
     const user = localStorage.getItem("user");
+    const userid = localStorage.getItem("userid");
     this.setState({ user });
+    this.setState({ userid });
   }
 
   searchField = React.createRef();

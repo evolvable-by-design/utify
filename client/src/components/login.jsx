@@ -107,6 +107,7 @@ class login extends Component {
           this.setState({ isAuthenticated: true, user, token });
           localStorage.setItem("token", this.state.token);
           localStorage.setItem("user", this.state.user.fullName);
+          localStorage.setItem("userid", this.state.user._id);
           AuthenticationService.updateToken(token);
           this.props.history.replace("/members");
         }
