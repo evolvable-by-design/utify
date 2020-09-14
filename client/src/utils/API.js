@@ -10,7 +10,7 @@ export default class API {
     const operation = (await this.pivo.does(Vocabulary.search)).getOrUndefined()
 
     if (operation !== undefined) {
-      operation.invoke(searchKeyword)
+      return operation.invoke(searchKeyword)
     } else {
       throw new Error('Impossible to perform search')
     }
