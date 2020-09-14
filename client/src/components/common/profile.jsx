@@ -3,6 +3,26 @@ import API from "../../utils/API";
 import ImageAvatars from "../common/avatar";
 import PrimarySearchAppBar from "./topNav";
 import Grid from "@material-ui/core/Grid";
+// import ProfileName from "./profilename";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import FolderIcon from "@material-ui/icons/Folder";
+import PermIdentity from "@material-ui/icons/PermIdentity";
+import Face from "@material-ui/icons/Face";
+
+import ListItemText from "@material-ui/core/ListItemText";
+
+import Avatar from "@material-ui/core/Avatar";
+
+const styles = theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  }
+});
 
 class Profile extends Component {
   state = {
@@ -37,25 +57,53 @@ class Profile extends Component {
       });
   };
   render() {
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <Grid container direction="row" alignItems="center" justify="center">
           <PrimarySearchAppBar />
         </Grid>
         <Grid container direction="row" alignItems="center" justify="center">
-          User Id: {this.state.userid}
+          {/* User Id: {this.state.userid}
           <br />
           User Name:
           {this.state.user}
           <br />
-          Profile Picture:
-          <ImageAvatars imageUrl={this.state.userObjDb.picture} />
-          <br />
           Gender: {this.state.userObjDb.gender}
+          <br />
+          Avatar:
+          <ImageAvatars imageUrl={this.state.userObjDb.picture} /> */}
+          <div className={classes.root}>
+            <List>
+              <ListItem dense button className={classes.listItem}>
+                <Avatar
+                  alt={this.state.userid}
+                  src={this.state.userObjDb.picture}
+                />
+                <ListItemText primary={this.state.user} />
+              </ListItem>
+              <ListItem dense button className={classes.listItem}>
+                <Avatar>
+                  <PermIdentity />
+                </Avatar>
+                <ListItemText primary={this.state.userid} />
+              </ListItem>
+              <ListItem dense button className={classes.listItem}>
+                <Avatar>
+                  <Face />
+                </Avatar>
+                <ListItemText primary={this.state.userObjDb.gender} />
+              </ListItem>
+            </List>
+          </div>
         </Grid>
       </React.Fragment>
     );
   }
 }
 
-export default Profile;
+// ProfileName.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
+
+export default withStyles(styles)(Profile);
