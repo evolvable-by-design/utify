@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Grid from "@material-ui/core/Grid";
 import Pivo from "@evolvable-by-design/pivo";
 import axios from "axios";
 import TextField from "@material-ui/core/TextField";
@@ -9,7 +10,11 @@ class MemberPage extends React.Component {
   state = {};
 
   render() {
-    return <PrimarySearchAppBar />;
+    return (
+      <Grid container direction="row" alignItems="center" justify="center">
+        <PrimarySearchAppBar />
+      </Grid>
+    );
   }
 }
 

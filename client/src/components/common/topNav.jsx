@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import Grid from "@material-ui/core/Grid";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -17,14 +18,15 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import TextField from "@material-ui/core/TextField";
-import SearchResults from "./searchResults";
+
 import API from "../../utils/API";
+import YouTubeVideo from "./videoResult";
 import withApi from "../componentWithApi";
 import { Vocabulary } from '../../vocabulary';
 
 const styles = theme => ({
   root: {
-    width: "100%"
+    width: "60%"
   },
   grow: {
     flexGrow: 1
@@ -173,7 +175,7 @@ class PrimarySearchAppBar extends Component {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-        <MenuItem onClick={this.handleClose}>My account</MenuItem>
+        <MenuItem onClick={this.handleClose}>Log Out</MenuItem>
       </Menu>
     );
 
@@ -247,7 +249,7 @@ class PrimarySearchAppBar extends Component {
                   autoFocus
                   value={this.state.searchKeyword}
                   onChange={this.handleChange}
-                  placeholder="Search…"
+                  placeholder="Search Your Tracks..."
                   disableUnderline
                   classes={{
                     root: classes.inputRoot,
@@ -298,12 +300,22 @@ class PrimarySearchAppBar extends Component {
         </AppBar>
         {renderMenu}
         {renderMobileMenu}
-        {/* <SearchResults searchResults={this.state.searchResults} /> */}
         <div>Your search results here below</div>
 
-        {this.state.searchResults.map(searchResult => (
+        {/*this.state.searchResults.map(searchResult => (
           <li key={searchResult.id.videoId}>{searchResult.snippet.title}</li>
-        ))}
+        ))*/}
+        <Grid container spacing={8}>
+          {/* <YouTubeVideo videoId="MVBj471BXmM" /> */}
+          {this.state.searchResults.map(searchResult => (
+            <Grid item xs={3}>
+              <YouTubeVideo
+                key={searchResult.id.videoId}
+                videoId={searchResult.id.videoId}
+              />
+            </Grid>
+          ))}
+        </Grid>
       </div>
     );
   }
