@@ -100,7 +100,8 @@ class login extends Component {
       mode: "cors",
       cache: "default"
     };
-    fetch("http://localhost:3001/api/v1/auth/google", options).then(r => {
+    // fetch("http://localhost:3001/api/v1/auth/google", options).then(r => {
+    fetch("/api/v1/auth/google", options).then(r => {
       const token = r.headers.get("x-auth-token");
       r.json().then(user => {
         if (token) {
