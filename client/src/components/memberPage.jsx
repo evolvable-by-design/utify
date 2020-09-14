@@ -1,12 +1,22 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
+import Pivo from "@evolvable-by-design/pivo";
+import axios from "axios";
 import TextField from "@material-ui/core/TextField";
 import API from "../utils/API";
+import { Vocabulary } from '../vocabulary';
+import config from "./config";
 
-class MemberPage extends Component {
+class MemberPage extends React.Component {
   state = {
     searchKeyword: "",
     user: ""
   };
+
+  constructor(props) {
+    super(props)
+    this.api = props.api
+  }
+
   componentDidMount() {
     const user = localStorage.getItem("user");
     this.setState({ user });
@@ -18,8 +28,9 @@ class MemberPage extends Component {
     e.preventDefault();
 
     console.log(`the search key word is ${this.state.searchKeyword}`);
-    API.passKeyword({
-      keyword: this.state.searchKeyword
+
+    this.api.passKeyword({
+      [Vocabulary.keyword]: this.state.searchKeyword
     });
   };
 
@@ -58,4 +69,21 @@ class MemberPage extends Component {
   }
 }
 
-export default MemberPage;
+const MemberPageWithApi = () => {
+  const [pivo, setPivo] = useState()
+
+  useEffect(() => {
+    Pivo.fetchDocumentationAndCreate(
+      config['DOCUMENTATION_URL'],
+      config['DOCUMENTATION_FETCHING_METHOD']
+    ).then(setPivo)
+  }, [])
+
+  if (pivo !== undefined) {
+    return <MemberPage api={new API(pivo)} />
+  } else {
+    return <p>Loading...</p>
+  }
+}
+
+export default MemberPageWithApi;

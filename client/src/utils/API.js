@@ -1,11 +1,19 @@
-import axios from "axios";
+import { Vocabulary } from '../vocabulary';
 
-export default {
-  //pass search keyword
-  passKeyword: function(searchKeyword) {
-    return axios.post("/api/search", searchKeyword);
+export default class API {
+
+  constructor (pivo) {
+    this.pivo = pivo
   }
-  // googleAuth: function() {
-  //   return axios.get("/auth/google");
-  // }
-};
+
+  async passKeyword (searchKeyword) {
+    const operation = (await this.pivo.does(Vocabulary.search)).getOrUndefined()
+
+    if (operation !== undefined) {
+      operation.invoke(searchKeyword)
+    } else {
+      throw new Error('Impossible to perform search')
+    }
+  }
+
+}

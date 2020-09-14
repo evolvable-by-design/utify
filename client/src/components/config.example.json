@@ -1,3 +1,5 @@
 {
-  "GOOGLE_CLIENT_ID": "key.apps.googleusercontent.com"
+  "GOOGLE_CLIENT_ID": "key.apps.googleusercontent.com",
+  "DOCUMENTATION_URL": "http://localhost:3001/api/documentation",
+  "DOCUMENTATION_FETCHING_METHOD": "GET"
 }
