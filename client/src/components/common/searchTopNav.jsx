@@ -31,8 +31,6 @@ import { browserHistory, withRouter } from "react-router-dom";
 import ImageAvatars from "./avatar";
 import API from "../../utils/API";
 import YouTubeVideo from "./videoResult";
-import withApi from "../componentWithApi";
-import { Vocabulary } from '../../vocabulary';
 
 const styles = theme => ({
   root: {
@@ -127,15 +125,14 @@ const styles = theme => ({
   }
 });
 
-class PrimarySearchAppBar extends Component {
+class SearchTopNav extends Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
     searchKeyword: "",
     user: "",
     userid: "",
-    searchResults: [],
-    redirect: false
+    searchResults: []
   };
 
   componentDidMount() {
@@ -148,14 +145,14 @@ class PrimarySearchAppBar extends Component {
   searchField = React.createRef();
 
   loadSearchResults = () => {
-    this.props.api.passKeyword({
-      [Vocabulary.keyword]: this.state.searchKeyword
+    API.passKeyword({
+      keyword: this.state.searchKeyword,
+      userid: this.state.userid
     })
-      .then(response => response.rawData)
-      .then(data => {
-        console.log(data)
-        let searchResults = data.items;
-        console.log(searchResults);
+      .then(res => {
+        console.log(res);
+        let searchResults = res.data.items;
+        // console.log(searchResults);
         this.setState({ searchResults });
         console.log(this.state.searchResults);
       })
@@ -166,11 +163,8 @@ class PrimarySearchAppBar extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     console.log(`the search key word is ${this.state.searchKeyword}`);
-    
-    this.setState({ redirect: true });
-    // this.loadSearchResults();
+    this.loadSearchResults();
   };
 
   handleChange = e => {
@@ -201,22 +195,6 @@ class PrimarySearchAppBar extends Component {
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    if (this.state.redirect) {
-      return (
-        <Redirect
-          to={{
-            pathname: "/search",
-            state: {
-              referrer: {
-                searchKeyword: this.state.searchKeyword,
-                redirect: true
-              }
-            }
-          }}
-        />
-      );
-    }
 
     const renderMenu = (
       <Menu
@@ -355,11 +333,11 @@ class PrimarySearchAppBar extends Component {
         </AppBar>
         {renderMenu}
         {renderMobileMenu}
-        <div>Your search results here below</div>
 
-        {/*this.state.searchResults.map(searchResult => (
+        <div>Your search results here below</div>
+        {/* {this.state.searchResults.map(searchResult => (
           <li key={searchResult.id.videoId}>{searchResult.snippet.title}</li>
-        ))*/}
+        ))} */}
         <div className={classes.videoGridStyle}>
           <GridList
             className={classes.gridList}
@@ -398,10 +376,8 @@ class PrimarySearchAppBar extends Component {
   }
 }
 
-PrimarySearchAppBar.propTypes = {
+SearchTopNav.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const StyledPrimarySearchAppBar = withStyles(styles)(PrimarySearchAppBar)
-
-export default withApi(StyledPrimarySearchAppBar);
+export default withStyles(styles)(SearchTopNav);

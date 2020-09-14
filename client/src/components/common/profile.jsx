@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import ImageAvatars from "../common/avatar";
+import PrimarySearchAppBar from "./topNav";
+import Grid from "@material-ui/core/Grid";
 
 class Profile extends Component {
   state = {
@@ -36,17 +38,22 @@ class Profile extends Component {
   };
   render() {
     return (
-      <div>
-        User Id: {this.state.userid}
-        <br />
-        User Name:
-        {this.state.user}
-        <br />
-        Profile Picture:
-        <ImageAvatars imageUrl={this.state.userObjDb.picture} />
-        <br />
-        Gender: {this.state.userObjDb.gender}
-      </div>
+      <React.Fragment>
+        <Grid container direction="row" alignItems="center" justify="center">
+          <PrimarySearchAppBar />
+        </Grid>
+        <Grid container direction="row" alignItems="center" justify="center">
+          User Id: {this.state.userid}
+          <br />
+          User Name:
+          {this.state.user}
+          <br />
+          Profile Picture:
+          <ImageAvatars imageUrl={this.state.userObjDb.picture} />
+          <br />
+          Gender: {this.state.userObjDb.gender}
+        </Grid>
+      </React.Fragment>
     );
   }
 }
