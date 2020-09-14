@@ -11,7 +11,9 @@ class YouTubeVideo extends React.Component {
       width: "250",
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
-        autoplay: 0
+        autoplay: 0,
+        origin: "http://localhost:3000",
+        widget_referrer: "http://localhost:3000"
       }
     };
 
