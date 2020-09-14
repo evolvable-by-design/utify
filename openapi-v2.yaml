@@ -38,6 +38,39 @@ paths:
           content:
             text/plain:
               example: 'hello'
+  /libraryResults:
+    post:
+      operationId: libraryResults
+      x-@id: evolvable:libraryResults
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userid:
+                  x-@id: evolvable:userid
+                  type: string
+                  default: $context.userid
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userid:
+                    x-@id: evolvable:userid
+                    type: string
+                  videoId:
+                    type: string
+                  thumbnailUrl:
+                    type: string
+                  channelTitle:
+                    type: string
+                  title: 
+                    type: string
                   
 # json-LD context
 x-@context:
