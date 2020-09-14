@@ -18,7 +18,8 @@ var corsOption = {
   origin: true,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   credentials: true,
-  exposedHeaders: ["x-auth-token"],
+  allowedHeaders: [ "Content-Type", "Authorization"],
+  exposedHeaders: ["x-auth-token", "Authorization"],
   preflightContinue: true
 };
 

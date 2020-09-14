@@ -14,6 +14,11 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@evolvable-by-design/pivo@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@evolvable-by-design/pivo/-/pivo-0.0.2.tgz#f5d588227c89ccb8a65710d7206f9a995e736cd7"
+  integrity sha512-+azBiJpOi/RA1to871djKvwyUymKnsqNJkw20h+P1G7lO/hZDgEo1DK8c7Uedy4G82UgCW8nSJ2aalWm4jP38w==
+
 "@material-ui/core@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-3.1.0.tgz#40c70e0764ef27dca5e149551577eba10c2e79ce"

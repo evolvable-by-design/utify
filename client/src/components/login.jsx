@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { AuthenticationService } from "@evolvable-by-design/pivo";
 import logo from "./loginLogo.png";
 import { GoogleLogin } from "react-google-login";
 import config from "./config.json";
@@ -84,6 +85,7 @@ class login extends Component {
     this.setState({ isAuthenticated: false, token: "", user: null });
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    AuthenticationService.removeToken();
   };
 
   googleResponse = response => {
@@ -105,6 +107,7 @@ class login extends Component {
           this.setState({ isAuthenticated: true, user, token });
           localStorage.setItem("token", this.state.token);
           localStorage.setItem("user", this.state.user.fullName);
+          AuthenticationService.updateToken(token);
           this.props.history.replace("/members");
         }
       });
