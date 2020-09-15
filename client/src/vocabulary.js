@@ -5,4 +5,5 @@ export const Vocabulary = {
   search: `${VOCAB_URL}search`,
   libraryResults: `${VOCAB_URL}libraryResults`,
   userId: `${VOCAB_URL}userid`,
+  tag: `${VOCAB_URL}tag`,
 }

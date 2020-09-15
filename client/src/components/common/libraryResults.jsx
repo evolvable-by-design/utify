@@ -63,11 +63,12 @@ const styles = theme => ({
 class LibraryResults extends Component {
   state = {
     userid: localStorage.getItem("userid"),
+    tag: this.props.tag,
     libraryResults: []
   };
 
   loadLibraryResults = () => {
-    this.props.api.passUserIdVideoLibraryResults(this.state.userid)
+    this.props.api.passUserIdVideoLibraryResults(this.state.userid, this.state.tag)
       .then(response => response.rawData)
       .then(libraryResults => {
         console.log(libraryResults);
@@ -107,7 +108,7 @@ class LibraryResults extends Component {
                 direction="row"
                 className={classes.subheadingStyle}
               >
-                Your Watch List
+                {this.state.tag}:
               </Grid>
               <GridList cellHeight={180} className={classes.gridList} cols={4}>
                 <GridListTile
@@ -135,8 +136,7 @@ class LibraryResults extends Component {
           ) : (
             <div classeName={classes.uhohStyle}>
               <Typography component="h2" variant="h1" gutterBottom>
-                Uh Oh! You dont have any videos saved! Try searching for
-                something now!
+                No videos in {this.state.tag} category yet. Try tagging a video!
               </Typography>
             </div>
           )}

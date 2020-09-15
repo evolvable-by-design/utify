@@ -25,11 +25,11 @@ export default class API {
     return axios.post("/api/library", userid);
   }
 
-  async passUserIdVideoLibraryResults (userid) {
+  async passUserIdVideoLibraryResults (userid, tag) {
     const operation = (await this.pivo.does(Vocabulary.libraryResults)).getOrUndefined()
 
     if (operation !== undefined) {
-      return operation.invoke({ [Vocabulary.userId]: userid })
+      return operation.invoke({ [Vocabulary.userId]: userid, [Vocabulary.tag]: tag })
     } else {
       throw new Error('Impossible to get library results')
     }

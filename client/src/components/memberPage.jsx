@@ -12,7 +12,10 @@ class MemberPage extends React.Component {
       <Grid container direction="row" alignItems="center" justify="center">
         <PrimarySearchAppBar />
         <Carousal />
-        <LibraryResults />
+        <LibraryResults tag="Motivational" />
+        <LibraryResults tag="Comedy" />
+        <LibraryResults tag="Lifestyle" />
+        <LibraryResults tag="Music Videos" />
       </Grid>
     );
   }
