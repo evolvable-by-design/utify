@@ -17,6 +17,9 @@ var LibrarySchema = new Schema({
   },
   title: {
     type: String
+  },
+  tag: {
+    type: String
   }
 });
 

@@ -41,17 +41,22 @@ paths:
   /libraryResults:
     post:
       operationId: libraryResults
+      summary: Get the video that the user saved into his library
       x-@id: evolvable:libraryResults
       requestBody:
         content:
           application/json:
             schema:
               type: object
+              required: ['userid', 'tag']
               properties:
                 userid:
                   x-@id: evolvable:userid
                   type: string
                   default: $context.userid
+                tag:
+                  type: string
+                  x-@id: evolvable:tag
       responses:
         '200':
           description: Success
