@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PrimarySearchAppBar from "./topNav";
 import Grid from "@material-ui/core/Grid";
 import API from "../../utils/API";
+import withApi from "../componentWithApi"
 import SearchTopNav from "./searchTopNav";
 
 import PropTypes from "prop-types";
@@ -66,12 +67,10 @@ class LibraryResults extends Component {
   };
 
   loadLibraryResults = () => {
-    API.passUserIdVideoLibraryResults({
-      userid: this.state.userid
-    })
-      .then(res => {
-        console.log(res.data);
-        let libraryResults = res.data;
+    this.props.api.passUserIdVideoLibraryResults(this.state.userid)
+      .then(response => response.rawData)
+      .then(libraryResults => {
+        console.log(libraryResults);
 
         this.setState({ libraryResults });
         console.log(this.state.libraryResults);
@@ -152,4 +151,4 @@ LibraryResults.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(LibraryResults);
+export default withApi(withStyles(styles)(LibraryResults));
